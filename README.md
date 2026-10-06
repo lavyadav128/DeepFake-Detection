@@ -1,55 +1,74 @@
 # Deepfake Detection Using InceptionV3
 
-## Project Description
-This project aims to develop a deep learning model for detecting deepfake images/videos by leveraging the pretrained models such as InceptionV3 architecture. The model is trained to classify Images as either "fake" or "real," utilizing a dataset comprising deepfake and authentic images/frames.
+An end-to-end Deep Learning and Computer Vision project for detecting manipulated and synthetic deepfake media (images/videos) utilizing Transfer Learning with **InceptionV3**.
 
-## Key Features
-- **Data Preprocessing**: 
-  - Images/Frames are preprocessed using the `ImageDataGenerator` to normalize pixel values and augment the dataset, enhancing model robustness.
+---
 
-- **Transfer Learning**: 
-  - The model employs transfer learning by initializing InceptionV3 with pretrained weights from ImageNet, allowing the model to leverage existing feature extraction capabilities.
+## 📌 Project Overview
+This project develops an accurate deep learning classification pipeline to distinguish authentic media from AI-generated/manipulated deepfake media. Leveraging the InceptionV3 architecture pre-trained on ImageNet, the model extracts high-level spatial feature representations to classify frames as either **Real** or **Fake**.
 
-- **Model Architecture**: 
-  - The architecture includes several layers:
-    - InceptionV3
-    - Global Average Pooling
-    - Dense layers with batch normalization
-    - Dropout layers to prevent overfitting
-    - The final output layer uses a sigmoid activation function for binary classification.
+---
 
-- **Training Strategy**: 
-  - The model is trained with various callbacks, including:
-    - Early stopping
-    - Model checkpointing
-    - Learning rate reduction
-  - This optimizes training efficiency and helps prevent overfitting.
+## 🛠️ Key Technical Features
 
-- **Performance Metrics**: 
-  - The model's performance is evaluated using metrics such as:
-    - Accuracy
-    - Precision
-    - Recall
-    - F1 Score
-  - This ensures a comprehensive assessment of its predictive capabilities.
+- **Data Preprocessing & Augmentation:**
+  - Standardized frame extraction, normalization, and real-time data augmentation using Keras `ImageDataGenerator` (rotation, zoom, horizontal flips) to minimize overfitting.
 
-## Results
-Upon training, the model achieved a validation accuracy of approximately 81% and an F1 score of around 0.74. The confusion matrix indicates balanced performance, with precision and recall demonstrating the model's capability to effectively distinguish between fake and real images.
+- **Transfer Learning Architecture:**
+  - Base Model: **InceptionV3** initialized with pre-trained ImageNet weights.
+  - Custom Classification Head:
+    - Global Average Pooling 2D
+    - Fully Connected (Dense) layers with Batch Normalization
+    - Dropout layers (0.3 - 0.5) for regularization
+    - Sigmoid activation output layer for binary probability classification.
 
-## Getting Started
+- **Training Callbacks & Optimization:**
+  - Implemented `EarlyStopping` to halt training at optimal validation loss.
+  - `ModelCheckpoint` to persist best-performing model weights.
+  - `ReduceLROnPlateau` for adaptive learning rate scheduling.
+
+- **Evaluation Metrics:**
+  - Evaluated via Accuracy, Precision, Recall, F1-Score, and Confusion Matrix.
+  - Achieved ~81% validation accuracy with a balanced F1-score of 0.74 on unseen test splits.
+
+---
+
+## 📂 Repository Structure
+```
+├── DFVD.ipynb               # Deepfake video frame extraction & initial experiments
+├── Preprocessing.ipynb      # Frame normalization, data cleaning, and augmentation
+├── Model_Training.ipynb     # InceptionV3 transfer learning model architecture & training
+└── README.md                # Project documentation
+```
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
-- Python 3.x
-- TensorFlow/Keras
-- NumPy
-- Matplotlib
-- Other required libraries (as specified in `requirements.txt`)
+- Python 3.8+
+- TensorFlow / Keras
+- OpenCV (`cv2`)
+- NumPy, Pandas, Matplotlib, Scikit-Learn
 
-### Installation
-1. Clone the repository:
+### Installation & Usage
+1. **Clone the repository:**
    ```bash
-   git clone <repository-url>
-   cd deepfake-detection-inceptionv3
+   git clone https://github.com/lavyadav128/DeepFake-Detection.git
+   cd DeepFake-Detection
    ```
 
+2. **Install dependencies:**
+   ```bash
+   pip install tensorflow opencv-python numpy pandas matplotlib scikit-learn
+   ```
 
+3. **Run Notebooks:**
+   Open Jupyter Notebook or Google Colab and run `Preprocessing.ipynb` followed by `Model_Training.ipynb`.
+
+---
+
+## 👤 Author
+- **Lav Kumar Yadav**
+- GitHub: [@lavyadav128](https://github.com/lavyadav128)
+- LinkedIn: [Lav Kumar Yadav](https://www.linkedin.com/in/lav-yadav-90476981)
